@@ -88,3 +88,10 @@ def save_results(results):
         writer.writerows(results)
 
     print(f"\nSaved {len(results)} results to {resultat_fil}")
+
+
+
+# Entry 
+if __name__ == "__main__":
+    results = run_benchmark()
+    save_results(results)
