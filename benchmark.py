@@ -75,3 +75,16 @@ def run_benchmark():
             })
 
     return results
+
+# Spara resultat till CSV
+def save_results(results):
+    os.makedirs(resultat_mapp, exist_ok=True)
+
+    fieldnames = ["algorithm", "size", "content_type", "time_seconds"]
+
+    with open(resultat_fil, mode="w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(results)
+
+    print(f"\nSaved {len(results)} results to {resultat_fil}")
