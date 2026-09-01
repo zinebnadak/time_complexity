@@ -51,3 +51,27 @@ def time_sort(sort_func, data):
     end = time.perf_counter()
 
     return end - start
+
+# Kör alla kombinationer av algoritmer, storlekar och innehållstyper och mät tiden
+def run_benchmark():
+    lists = generate_lists()
+    results = []
+
+    total_runs = len(lists) * len(algorithms)
+    run_count = 0
+
+    for (size, content_type), the_list in lists.items():
+        for algorithm_name, algorithm_func in algorithms.items():
+            run_count += 1
+            print(f"[{run_count}/{total_runs}] Running {algorithm_name} on size={size}, type={content_type}")
+
+            duration = time_sort(algorithm_func, the_list)
+
+            results.append({
+                "algorithm": algorithm_name,
+                "size": size,
+                "content_type": content_type,
+                "time_seconds": duration,
+            })
+
+    return results
