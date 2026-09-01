@@ -26,3 +26,18 @@ resultat_fil = os.path.join(resultat_mapp, "benchmark_results.csv")
 
 sys.setrecursionlimit(10000)  # prevent recursion limit issues, Python's default recursion limit at n=10000
 
+
+# Skapa lista 
+def generate_lists() -> dict[tuple[int, str], list[int]]:
+    lists = {}
+
+    for size in sizes:
+        lists[(size, "random_0_100")] = [
+            random.randint(0, 100) for _ in range(size)
+        ]
+        lists[(size, "random_0_10000")] = [
+            random.randint(0, 10000) for _ in range(size)
+        ]
+        lists[(size, "sorted")] = list(range(size))
+
+    return lists
