@@ -41,3 +41,13 @@ def generate_lists() -> dict[tuple[int, str], list[int]]:
         lists[(size, "sorted")] = list(range(size))
 
     return lists
+
+# Tidsmätning
+def time_sort(sort_func, data):
+    data_copy = data[:]  # ny kpoia inte mätad.
+
+    start = time.perf_counter()
+    sort_func(data_copy)
+    end = time.perf_counter()
+
+    return end - start
