@@ -1,13 +1,15 @@
-    """
+"""
     Sorterar en lista med Quick sort (dela-och-härska).
     Väljer ett pivotelement, delar upp listan i element mindre
     respektive större än pivoten, och sorterar delarna rekursivt.
 
     Tidskomplexitet:
         Bästa/snitt fall: O(n log n)
-        Värsta fall:      O(n^2)  (t.ex. vid dåligt pivotval på
-                                   redan sorterad/nästan sorterad data)
+        Värsta fall:      O(n^2)  
 """
+
+import random
+
 
 def quick_sort(arr):
     a = arr[:]
@@ -23,7 +25,10 @@ def _quick_sort(a, low, high):
 
 
 def _partition(a, low, high):
-    pivot = a[high]  # välj sista elementet som pivot
+    random_index = random.randint(low, high)
+    a[random_index], a[high] = a[high], a[random_index]
+
+    pivot = a[high]
     i = low - 1
     for j in range(low, high):
         if a[j] <= pivot:
